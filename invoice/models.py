@@ -1,8 +1,46 @@
 from typing import Callable
 from django.db import models
 from django.contrib.postgres.fields import JSONField
+from django.db.models.base import ModelState
 from django.db.models.deletion import CASCADE
 from django.db.models.lookups import In
+from django.shortcuts import get_object_or_404
+
+
+class ServicesCategory(models.Model):
+    name = models.CharField(verbose_name="name_category", max_length=32)
+    is_active = models.BooleanField(verbose_name="category_is_active", db_index=True, default=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Services(models.Model):
+    category = models.ForeignKey(ServicesCategory, on_delete=models.CASCADE)
+    name = models.CharField(verbose_name="services", max_length=256)
+    unit = models.CharField(verbose_name="unit", max_length=32)
+    standart = models.DecimalField(verbose_name="standart", max_digits=8, decimal_places=4, default=0)
+    rate = models.DecimalField(verbose_name="rate", max_digits=7, decimal_places=3, default=0)
+    factor = models.DecimalField(verbose_name="factor", max_digits=3, decimal_places=2, default=0)
+    const = models.BooleanField(verbose_name="const_payments", db_index=True, default=True)
+    is_active = models.BooleanField(verbose_name="services_activ", db_index=True, default=True)
+
+    def __str__(self):
+        return f"{self.name} ({self.category.name})"
+
+    @staticmethod
+    def get_const_payments(category):
+        '''Возвращает константные статьи (которые зависят от тарифа)'''
+        return Services.objects.filter(is_active=True, const=True, category=category)
+    
+    @staticmethod
+    def get_varybose_payments(category):
+        '''Возвращает переменные статьи (которые зависят подачи показаний)'''
+        return Services.objects.filter(is_active=True, const=True, category=category)
+
+    @staticmethod
+    def get_items():
+        return Services.objects.filter(is_active=True)
 
 
 class City(models.Model):
@@ -35,6 +73,7 @@ class House(models.Model):
     street = models.ForeignKey(Street, on_delete=models.CASCADE)
     sq_home = models.DecimalField(verbose_name="sq_home", max_digits=5, decimal_places=2)
     uk = models.ForeignKey(UK, on_delete=CASCADE)
+    category_rate = models.ForeignKey(ServicesCategory, on_delete=CASCADE)
 
 
 class Appartament(models.Model):
@@ -57,26 +96,47 @@ class User(models.Model):
     invoice = models.ForeignKey(Invoice, on_delete=CASCADE, default=1)
 
 
-class ServicesCategory(models.Model):
-    name = models.CharField(verbose_name="name_category", max_length=32)
-    is_active = models.BooleanField(verbose_name="category_is_active", db_index=True, default=True)
+# Текущие показания счетчиков
+class CurrentCounter(models.Model):
+    user = models.ForeignKey(User, on_delete=CASCADE)
+    col_water = models.PositiveIntegerField(verbose_name="col_water", null=True)
+    hot_water = models.PositiveIntegerField(verbose_name="hot_water", null=True)
+    electric_day = models.PositiveIntegerField(verbose_name="electric_day", null=True)
+    electric_night = models.PositiveIntegerField(verbose_name="electric_day", null=True)
 
-    def __str__(self):
-        return self.name
 
-
-class Services(models.Model):
-    category = models.ForeignKey(ServicesCategory, on_delete=models.CASCADE)
-    name = models.CharField(verbose_name="services", max_length=256)
-    unit = models.CharField(verbose_name="unit", max_length=32)
-    standart = models.DecimalField(verbose_name="standart", max_digits=8, decimal_places=4, default=0)
-    rate = models.DecimalField(verbose_name="rate", max_digits=7, decimal_places=3, default=0)
-    factor = models.DecimalField(verbose_name="factor", max_digits=3, decimal_places=2, default=0)
-    is_active = models.BooleanField(verbose_name="services_activ", db_index=True, default=True)
-
-    def __str__(self):
-        return f"{self.name} ({self.category.name})"
+# История показания счетчиков
+class HistoryCounter(models.Model):
+    user = models.ForeignKey(User, on_delete=CASCADE)
+    period = models.DateField(verbose_name="period")
+    hist_col_water = models.PositiveIntegerField(verbose_name="hist_col_water")
+    hist_hot_water = models.PositiveIntegerField(verbose_name="hist_hot_water")
+    hist_electric_day = models.PositiveIntegerField(verbose_name="hist_electric_day")
+    hist_electric_night = models.PositiveIntegerField(verbose_name="hist_electric_night")
 
     @staticmethod
-    def get_items():
-        return Services.objects.filter(is_active=True).order_by("category", "name")
+    def get_last_counter(pk):
+        return get_object_or_404(HistoryCounter, pk=pk)
+
+
+# Постоянные платежи (расчет по формуле = const*rate или = const)
+class ConstantPayments(models.Model):
+    user = models.ForeignKey(User, on_delete=CASCADE)
+    data = JSONField(verbose_name="data")
+
+    @staticmethod
+    def get_items(user):
+        return ConstantPayments.objects.filter(user=user)
+
+
+# Переменные платежи (зависящие от счетчиков)
+class VariablePayments(models.Model):
+    user = models.ForeignKey(User, on_delete=CASCADE)
+    period = models.DateField(verbose_name="period")
+    service = models.CharField(verbose_name="name_service", max_length=128)
+    price = models.DecimalField(verbose_name="rate", max_digits=7, decimal_places=3)
+
+    @staticmethod
+    def get_items(user):
+        return VariablePayments.objects.filter(user=user)
+
