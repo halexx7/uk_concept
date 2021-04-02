@@ -36,7 +36,7 @@ class Services(models.Model):
     @staticmethod
     def get_varybose_payments(category):
         '''Возвращает переменные статьи (которые зависят подачи показаний)'''
-        return Services.objects.filter(is_active=True, const=True, category=category)
+        return Services.objects.filter(is_active=True, const=False, category=category)
 
     @staticmethod
     def get_items():
@@ -104,6 +104,10 @@ class CurrentCounter(models.Model):
     electric_day = models.PositiveIntegerField(verbose_name="electric_day", null=True)
     electric_night = models.PositiveIntegerField(verbose_name="electric_day", null=True)
 
+    @staticmethod
+    def get_last_val(user):
+        return CurrentCounter.objects.filter(user=user)
+
 
 # История показания счетчиков
 class HistoryCounter(models.Model):
@@ -114,9 +118,12 @@ class HistoryCounter(models.Model):
     hist_electric_day = models.PositiveIntegerField(verbose_name="hist_electric_day")
     hist_electric_night = models.PositiveIntegerField(verbose_name="hist_electric_night")
 
+    class Meta:
+        ordering = ("-period",)
+
     @staticmethod
-    def get_last_counter(pk):
-        return get_object_or_404(HistoryCounter, pk=pk)
+    def get_last_val(user):
+        return HistoryCounter.objects.filter(user=user)[0:1]
 
 
 # Постоянные платежи (расчет по формуле = const*rate или = const)
