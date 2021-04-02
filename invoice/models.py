@@ -140,3 +140,8 @@ class VariablePayments(models.Model):
     def get_items(user):
         return VariablePayments.objects.filter(user=user)
 
+# Льготы
+class Privileges(models.Model):
+    user = models.ForeignKey(User, on_delete=CASCADE)
+    name = models.ForeignKey(Services, on_delete=CASCADE)
+    sale = models.PositiveIntegerField(verbose_name='Sale')

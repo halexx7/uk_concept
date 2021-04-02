@@ -8,7 +8,8 @@
             "city": 1,
             "street": 2,
             "sq_home": 876.49,
-            "uk": 1
+            "uk": 1,
+            "category_rate": 1
         }
     }
 ]
