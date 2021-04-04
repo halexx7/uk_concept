@@ -11,232 +11,8 @@ var pay = [
         subsidies: "1.8",
         recalculations: "1.9",
         total: "1.10"
-    },
-    {
-        value: "Услуги по расчету платы за взнос на капитальный ремонт",
-        um: "m2",
-        standard: "2.3",
-        volume: "2.4",
-        pricing_plans: "2.5",
-        accrued: "2.6",
-        coefficient: "2.7",
-        subsidies: "2.8",
-        recalculations: "2.9",
-        total: "2.10"
-    },
-    {
-        value: "Холодная вода, используемая для целей ГВС",
-        um: "m3",
-        standard: "3.3",
-        volume: "3.4",
-        pricing_plans: "3.5",
-        accrued: "3.6",
-        coefficient: "3.7",
-        subsidies: "3.8",
-        recalculations: "3.9",
-        total: "3.10"
-    },
-    {
-        value: "теплова энергия для целей ГВС",
-        um: "Гкал",
-        standard: "4.3",
-        volume: "4.4",
-        pricing_plans: "4.5",
-        accrued: "4.6",
-        coefficient: "4.7",
-        subsidies: "4.8",
-        recalculations: "4.9",
-        total: "4.10"
-    },
-    {
-        value: "Водоотведение(индив-е потребление)",
-        um: "m3",
-        standard: "5.3",
-        volume: "5.4",
-        pricing_plans: "5.5",
-        accrued: "5.6",
-        coefficient: "5.7",
-        subsidies: "5.8",
-        recalculations: "5.9",
-        total: "5.10"
-    },
-    {
-        value: "Холодное водоснабжение (индив-е потребление)",
-        um: "m3",
-        standard: "6.3",
-        volume: "6.4",
-        pricing_plans: "6.5",
-        accrued: "6.6",
-        coefficient: "6.7",
-        subsidies: "6.8",
-        recalculations: "6.9",
-        total: "6.10"
-    },
-    {
-        value: "Холодное водоснабжение (общедомовые нужды)",
-        um: "m3",
-        standard: "7.3",
-        volume: "7.4",
-        pricing_plans: "7.5",
-        accrued: "7.6",
-        coefficient: "7.7",
-        subsidies: "7.8",
-        recalculations: "7.9",
-        total: "7.10"
-    },
-    {
-        value: "Электроэнергия (день)",
-        um: "кВт.ч.",
-        standard: "8.3",
-        volume: "8.4",
-        pricing_plans: "8.5",
-        accrued: "8.6",
-        coefficient: "8.7",
-        subsidies: "8.8",
-        recalculations: "8.9",
-        total: "8.10"
-    },
-    {
-        value: "Электроэнергия(ночь)",
-        um: "кВт.ч.",
-        standard: "9.3",
-        volume: "9.4",
-        pricing_plans: "9.5",
-        accrued: "9.6",
-        coefficient: "9.7",
-        subsidies: "9.8",
-        recalculations: "9.9",
-        total: "9.10"
-    },
-    {
-        value: "Задолженность(авнс(+), недоплата (-) ОА ЭК Восток",
-        um: "кВт.ч.",
-        standard: "10.3",
-        volume: "10.4",
-        pricing_plans: "10.5",
-        accrued: "10.6",
-        coefficient: "10.7",
-        subsidies: "10.8",
-        recalculations: "10.9",
-        total: "10.10"
-    },
-    {
-        value: "Центральное отопление",
-        um: "Гкал",
-        standard: "11.3",
-        volume: "11.4",
-        pricing_plans: "11.5",
-        accrued: "11.6",
-        coefficient: "11.7",
-        subsidies: "11.8",
-        recalculations: "11.9",
-        total: "11.10"
-    },
-    {
-        value: "Вывоз твердых бытовых отходов",
-        um: "m2",
-        standard: "12.3",
-        volume: "12.4",
-        pricing_plans: "12.5",
-        accrued: "12.6",
-        coefficient: "12.7",
-        subsidies: "12.8",
-        recalculations: "12.9",
-        total: "12.10"
-    },
-    {
-        value: "Содержание и ремонт текущего лифтового хозяйства",
-        um: "m2",
-        standard: "13.3",
-        volume: "13.4",
-        pricing_plans: "13.5",
-        accrued: "13.6",
-        coefficient: "13.7",
-        subsidies: "13.8",
-        recalculations: "13.9",
-        total: "13.10"
-    },
-    {
-        value: "Установка общедомового прибора учета тепловой энергии (ОАО ТеплоТюмени)",
-        um: "m2",
-        standard: "14.3",
-        volume: "14.4",
-        pricing_plans: "14.5",
-        accrued: "14.6",
-        coefficient: "14.7",
-        subsidies: "14.8",
-        recalculations: "14.9",
-        total: "14.10"
-    },
-    {
-        value: "% за рассрочку платежа (ОДПУ) ставка рефинансирования ЦБ РФ (ОАО ТеплоТюмени)",
-        um: "%",
-        standard: "15.3",
-        volume: "15.4",
-        pricing_plans: "15.5",
-        accrued: "15.6",
-        coefficient: "15.7",
-        subsidies: "15.8",
-        recalculations: "15.9",
-        total: "15.10"
-    },
-    {
-        value: "ХВС (в целях содержания общедомового иммущества)",
-        um: "m2",
-        standard: "16.3",
-        volume: "16.4",
-        pricing_plans: "16.5",
-        accrued: "16.6",
-        coefficient: "16.7",
-        subsidies: "16.8",
-        recalculations: "16.9",
-        total: "16.10"
-    },
-    {
-        value: "Электроэнергия в целях содержания общедомового иммущества",
-        um: "m2",
-        standard: "17.3",
-        volume: "17.4",
-        pricing_plans: "17.5",
-        accrued: "17.6",
-        coefficient: "17.7",
-        subsidies: "17.8",
-        recalculations: "17.9",
-        total: "17.10"
-    },
-    {
-        value: "Содержание и ТО общедомового иммущества",
-        um: "m2",
-        standard: "18.3",
-        volume: "18.4",
-        pricing_plans: "18.5",
-        accrued: "18.6",
-        coefficient: "18.7",
-        subsidies: "18.8",
-        recalculations: "18.9",
-        total: "18.10"
-    },
-    {
-        value: "Финансовые мероприятия по решению общего собрания",
-        um: "m2",
-        standard: "19.3",
-        volume: "19.4",
-        pricing_plans: "19.5",
-        accrued: "19.6",
-        coefficient: "19.7",
-        subsidies: "19.8",
-        recalculations: "19.9",
-        total: "19.10"
     }
 ];
-
-const obj = {
-    'test': test[0].fields,
-    'curr': curr[0].fields,
-    'hist': hist[0].fields,
-    'con': con[0].fields
-};
-console.log(obj);
 
 //Конвертим дату в формат - Январь 2021
 function convertDate(item) {
@@ -282,36 +58,26 @@ function convertDate(item) {
     }
 }
 
-// const obj ={
-//     'user': user[0].fields,
-//     'appartaments': appartaments[0].fields,
-//     'house': house[0].fields,
-//     'city': city[0].fields,
-//     'street': street[0].fields,
-//     'uk': uk[0].fields,
-//     'invoice': invoice[0].fields
-// }
-
-var data = {
-    payer: obj,
-    payments: pay,
-    period: convertDate(obj.invoice.period)
-}
+let variable_pay = []
+//Парсим объект
+Object.values(variable).forEach(value => {
+    variable_pay.push(value.fields);
+  });
 
 
 // Добавим верхнюю часть Шапки
 $('.header__top').append(
-    `<p class="header__top--payer"> За <span style="font-weight: bold; font-size: 1.6rem;">${data.period}</span>Плательщик: ${data.payer.user.name} </p>
-    <p> Адрес: ${data.payer.street.street}, д.${data.payer.house.number}</p>
-    <p> Площащь: ${data.payer.appartaments.sq_appart} м2 Количество проживающих: ${data.payer.appartaments.num_owner}</p>
-    <p> Управляющая компания: ${data.payer.invoice.data.uk}</p>`,
+    `<p class="header__top--payer"> За <span style="font-weight: bold; font-size: 1.6rem;">${convertDate(variable_pay[0].period)}</span>Плательщик: ${user.name} </p>
+    <p> Адрес: ${street.street}, д.${house.number}</p>
+    <p> Площащь: ${appartaments.sq_appart} м2 Количество проживающих: ${appartaments.num_owner}</p>
+    <p> Управляющая компания: ${uk.name}, ${uk.requisites}</p>`,
 );
 
 // Добавим среднюю часть Шапки
 $('.header__center').append(
-    `<p> получатель платежа: ${data.payer.uk.name}, ${data.payer.uk.requisites}  </p>
-     <p> Адрес сайта: <span class="text__period"> ${data.payer.uk.web_addr} </span></p>
-     <p> лицевой счет: ${data.payer.user.personal_account} сумма к оплате: <span class="text__sum"> 4872,86 р.</span></p>`
+    `<p> получатель платежа: ${uk.name}, ${uk.requisites}  </p>
+     <p> Адрес сайта: <span class="text__period"> ${uk.web_addr} </span></p>
+     <p> лицевой счет: ${user.personal_account} сумма к оплате: <span class="text__sum"> 4872,86 р.</span></p>`
 );
 
 $('.header__bottom').append('<table style="width: 606px;"></table>');
@@ -350,36 +116,54 @@ $('.body__content > table').append(
         <th>Объем</th>
         <th>Тариф</th>
         <th>Начисленно<br>руб.</th>
-        <th>коэф-т<br>руб.</th>
-        <th>Субсидии<br>руб.</th>
+        <th>коэф-т</th>
+        <th>Субсидии<br>%</th>
+        <th>Льготы<br>%</th>
         <th>Перерасчет<br>руб.</th>
         <th>Итого<br>за расчетный<br>период</th>
     </tr>`
 );
 
+console.log(constant);
+console.log(variable_pay);
+
 // Пройдем циклом по всем элементам массива и сгенерируем строки таблицы
-data.payments.forEach(function (item, i, arr) {
-    $('.body__content > table').append(
-        `<tr>
-        <td class="pad__table">${item.value}</td>
-        <td class="text__center  pad__table">${item.um}</td>
-        <td class="text__right  pad__table">${item.standard}</td>
-        <td class="text__right  pad__table">${item.volume}</td>
-        <td class="text__right  pad__table">${item.pricing_plans}</td>
-        <td class="text__right  pad__table">${item.accrued}</td>
-        <td class="text__right  pad__table">${item.coefficient}</td>
-        <td class="text__right  pad__table">${item.subsidies}</td>
-        <td class="text__right  pad__table">${item.recalculations}</td>
-        <td class="text__right  pad__table">${item.total}</td>
-    </tr>`
-    );
-});
+
+function drawingTable (object) {
+    let total = Number();
+    let num = Number();
+    object.forEach(function (item, i, arr) {
+        num = Number(parseFloat(item.accured).toFixed(3));
+        total += num;
+        $('.body__content > table').append(
+            `<tr>
+            <td class="pad__table">${item.service}</td>
+            <td class="text__center  pad__table">${item.unit}</td>
+            <td class="text__right  pad__table">${(item.standart > 0) ? item.standart: ''}</td>
+            <td class="text__right  pad__table">${item.volume}</td>
+            <td class="text__right  pad__table">${item.rate}</td>
+            <td class="text__right  pad__table">${Number(item.accured).toFixed(3)}</td>
+            <td class="text__right  pad__table">${item.coefficient}</td>
+            <td class="text__right  pad__table">${(item.subsidies > 0) ? item.subsidies: ''}</td>
+            <td class="text__right  pad__table">${(item.privileges > 0) ? item.privileges: ''}</td>
+            <td class="text__right  pad__table">${(item.recalculations > 0) ? item.recalculations: ''}</td>
+            <td class="text__right  pad__table">${item.total}</td>
+        </tr>`
+        );
+    });
+    return total;
+}
+
+let total_const = drawingTable(constant);
+console.log(total_const);
+let tatal_variable = drawingTable(variable_pay);
+console.log(tatal_variable);
 
 //Итого
 $('.body__content > table').append(
     `<tr class="table__bold">
-        <td colspan="9" style="font-weight: bold;">Итого за расчетный период: </td>
-        <td class="text__right  pad__table">4872,86</td>
+        <td colspan="10" style="font-weight: bold;">Итого за расчетный период: </td>
+        <td class="text__right  pad__table">${(total_const + tatal_variable).toFixed(2)}</td>
     </tr>`
 );
 

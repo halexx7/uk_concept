@@ -7,7 +7,8 @@
             "col_water": 3500,
             "hot_water": 900,
             "electric_day": 3654,
-            "electric_night": 785
+            "electric_night": 785,
+            "electric_sungle": 0
         }
     }
 ]

@@ -6,6 +6,7 @@
             "personal_account": "4334459393",
             "name": "ИВАНОВ ИВАН ИВАНОВИЧ",
             "appartament": 1,
+            "type_electric_meter": 2,
             "invoice": 1
         }
     }

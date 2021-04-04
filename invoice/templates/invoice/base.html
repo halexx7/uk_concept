@@ -31,12 +31,18 @@
     
     <script>
 
-        const test = {{ test }};
-        const curr = {{ curr }};
-        const hist = {{ hist }};
-        const user = {{ user }};
+        const current = {{ curr }}[0].fields;
+        const history = {{ hist }}[0].fields;
+        const user = {{ user }}[0].fields;
+        const constant = JSON.parse({{ const }}[0].fields.data);
+        const variable = {{ variable }};
+        const appartaments = {{ appartaments }}[0].fields;
+        const house = {{ house }}[0].fields;
+        const city = {{ city }}[0].fields;
+        const street = {{ street }}[0].fields;
+        const uk = {{ uk }}[0].fields;
 
-        const con = {{ const }};
+        
     </script>
 
     <!-- jQuery -->

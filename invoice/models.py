@@ -19,9 +19,9 @@ class Services(models.Model):
     category = models.ForeignKey(ServicesCategory, on_delete=models.CASCADE)
     name = models.CharField(verbose_name="services", max_length=256)
     unit = models.CharField(verbose_name="unit", max_length=32)
-    standart = models.DecimalField(verbose_name="standart", max_digits=8, decimal_places=4, default=0)
+    standart = models.DecimalField(verbose_name="standart", max_digits=8, decimal_places=4, blank=True, default='')
     rate = models.DecimalField(verbose_name="rate", max_digits=7, decimal_places=3, default=0)
-    factor = models.DecimalField(verbose_name="factor", max_digits=3, decimal_places=2, default=0)
+    factor = models.DecimalField(verbose_name="factor", max_digits=3, decimal_places=2, default=1)
     const = models.BooleanField(verbose_name="const_payments", db_index=True, default=True)
     is_active = models.BooleanField(verbose_name="services_activ", db_index=True, default=True)
 
@@ -90,9 +90,18 @@ class Invoice(models.Model):
 
 
 class User(models.Model):
+    SINGLE = '1'
+    TWO = '2'
+
+    COUNTER_TYPE = (
+        ( SINGLE, 'однотарифный'),
+        ( TWO, 'двухтарифный' )
+    )
+
     personal_account = models.CharField(verbose_name="personal_account", max_length=32, unique=True)
     name = models.CharField(verbose_name="user_name", max_length=128)
     appartament = models.ForeignKey(Appartament, on_delete=CASCADE, default=1)
+    type_electric_meter = models.CharField(verbose_name="counter_type", max_length=1, choices=COUNTER_TYPE)
     invoice = models.ForeignKey(Invoice, on_delete=CASCADE, default=1)
 
 
@@ -103,6 +112,7 @@ class CurrentCounter(models.Model):
     hot_water = models.PositiveIntegerField(verbose_name="hot_water", null=True)
     electric_day = models.PositiveIntegerField(verbose_name="electric_day", null=True)
     electric_night = models.PositiveIntegerField(verbose_name="electric_day", null=True)
+    electric_sungle = models.PositiveIntegerField(verbose_name="electric_single", null=True, blank=True, default='')
 
     @staticmethod
     def get_last_val(user):
@@ -141,14 +151,31 @@ class VariablePayments(models.Model):
     user = models.ForeignKey(User, on_delete=CASCADE)
     period = models.DateField(verbose_name="period")
     service = models.CharField(verbose_name="name_service", max_length=128)
-    price = models.DecimalField(verbose_name="rate", max_digits=7, decimal_places=3)
+    unit = models.CharField(verbose_name="unit", max_length=32)
+    standart = models.DecimalField(verbose_name="standart", max_digits=8, decimal_places=4, blank=True, default='125')
+    rate = models.DecimalField(verbose_name="rate", max_digits=7, decimal_places=3, default=0)
+    accured = models.DecimalField(verbose_name="rate", max_digits=7, decimal_places=3, default=0)
+    volume = models.DecimalField(verbose_name="volume", max_digits=7, decimal_places=2, default=0)
+    coefficient = models.DecimalField(verbose_name="factor", max_digits=3, decimal_places=2, default=1)
+    subsidies = models.DecimalField(verbose_name="subsidies", max_digits=6, decimal_places=2, default=0)
+    privileges = models.DecimalField(verbose_name="privileges", max_digits=6, decimal_places=2, default=0)
+    recalculations = models.DecimalField(verbose_name="privileges", max_digits=6, decimal_places=2, default=0)
+    total = models.DecimalField(verbose_name="privileges", max_digits=7, decimal_places=2, default=0)
 
     @staticmethod
     def get_items(user):
         return VariablePayments.objects.filter(user=user)
 
+
+# Cубсидии
+class Subsidies(models.Model):
+    user = models.ForeignKey(User, on_delete=CASCADE)
+    service = models.ForeignKey(Services, on_delete=CASCADE)
+    sale = models.PositiveIntegerField(verbose_name='Sale', default=0)
+
+
 # Льготы
 class Privileges(models.Model):
     user = models.ForeignKey(User, on_delete=CASCADE)
-    name = models.ForeignKey(Services, on_delete=CASCADE)
-    sale = models.PositiveIntegerField(verbose_name='Sale')
+    service = models.ForeignKey(Services, on_delete=CASCADE)
+    sale = models.PositiveIntegerField(verbose_name='Sale', default=0)
