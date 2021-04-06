@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
 from django.db import models
@@ -10,7 +11,7 @@ from .managers import UserManager
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    personal_account = models.CharField(max_length=128, verbose_name="Лицевой счет", unique=True)
+    personal_account = models.CharField(max_length=128, help_text="Введите номер лицевого счета", verbose_name="Лицевой счет", unique=True)
     password = models.CharField(verbose_name="Пароль", max_length=128)
 
     first_name = models.CharField(verbose_name="Имя", max_length=30, blank=True)
@@ -19,7 +20,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(verbose_name="Email", unique=True)
     is_active = models.BooleanField(verbose_name="Активный", default=True)
-    is_staff = models.BooleanField(default=False , verbose_name='Разрешения')
+    is_staff = models.BooleanField(default=True, verbose_name="Доступ к админке")
+    is_superuser = models.BooleanField(default=False, verbose_name='Суперпользователь', help_text='Обозначает, что у этого пользователя есть все разрешения, без их явного назначения.')
+
+    last_login = models.DateTimeField(blank=True, null=True, verbose_name='Последний вход')
 
     objects = UserManager()
 
