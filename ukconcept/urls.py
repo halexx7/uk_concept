@@ -8,6 +8,7 @@ import invoice.views as invoice
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('invoice/', invoice.InvoiceViews.as_view(), name='invoice'),
+    path("auth/", include("authnapp.urls", namespace="auth")),
     # path('invoice/', invoice.main, name='invoice'),
 ]
 

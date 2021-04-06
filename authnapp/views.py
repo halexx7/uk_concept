@@ -10,7 +10,7 @@ def login(request):
 
     login_form = UserLoginForm(data=request.POST or None)
     if request.method == "POST" and login_form.is_valid():
-        personal_account = request.POST["personal_account"]
+        personal_account = request.POST["username"]
         password = request.POST["password"]
 
         user = auth.authenticate(personal_account=personal_account, password=password)
