@@ -60,6 +60,7 @@ def get_calc_const():
 
     for user in users:
         data = []
+        total = 0
         for el in rate:
             element = dict()
             element['service'] = el.name
@@ -78,7 +79,8 @@ def get_calc_const():
             element['coefficient'] = el.factor if el.factor >= 0 else ''
             element['subsidies'] = ''
             element['privileges'] = ''
-            element['total'] = '1.10'
+            element['recalculations'] = ''
+            element['total'] = element['accured']
 
             data.append(element)
         user_id = User.objects.get(id=user.id)
@@ -100,13 +102,17 @@ def get_calc_variable():
 
     for user in users:
         user_id = User.objects.get(id=user.id)
+        #Канализация (водоотведение)
+        sewage = 0
 
         for el in rate:
             standart = el.standart
             if el.name == 'Холодная вода (индивидуальное потребление)':
                 accured = el.rate * (curr.col_water - hist.hist_col_water )
+                sewage += accured
             elif el.name == 'Горячая вода (индивидуальное потребление)':
                 accured = el.rate * (curr.hot_water - hist.hist_hot_water )
+                sewage += accured
             elif el.name == 'Электроэнергия день':
                 accured = el.rate * (curr.electric_day - hist.hist_electric_day )
             elif el.name == 'Электроэнергия ночь':
@@ -121,8 +127,9 @@ def get_calc_variable():
             total = ((accured * coefficient) * decimal.Decimal(1 - (subsidies + privileges)/100) - recalculations)
             
             record = VariablePayments(
-                user=user_id, 
-                period=datetime.datetime.now(),
+                user=user_id,
+                #TODO Попробуем данный тип представления даты
+                period=datetime.datetime.today().strftime("%Y/%m/%d"),
                 service=el.name,
                 unit=el.unit,
                 standart=standart,

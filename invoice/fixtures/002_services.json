@@ -36,6 +36,18 @@
     },
     {
         "model": "invoice.services",
+        "pk": 3,
+        "fields": {
+            "category": 1,
+            "name": "Водоотведение (индивидуальное потребление)",
+            "unit": "м3",
+            "standart": 1,
+            "const": false,
+            "rate": 25.401
+        }
+    },
+    {
+        "model": "invoice.services",
         "pk": 4,
         "fields": {
             "category": 1,
